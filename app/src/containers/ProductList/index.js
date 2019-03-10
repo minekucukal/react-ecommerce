@@ -35,7 +35,7 @@ class ProductList extends React.Component {
       return this.state.products.map((product, index) => {
         return (
           <div key={index}>
-            <Col d3>
+            <Col d3 t6 m6>
               <Card>
                 <ProductBox>
                   <Link to={`/product-detail/${product.item_id}`}>

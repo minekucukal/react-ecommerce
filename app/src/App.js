@@ -5,7 +5,8 @@ import Header from './components/Header';
 import Logo from './components/Logo';
 import Content from './components/Grid/Content';
 import ProductBody from './components/ProductBody';
-import BasketContainer from './containers/Basket'
+import BasketContainer from './containers/Basket';
+import {Link} from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -13,8 +14,10 @@ class App extends Component {
       <div className="App">
         <GlobalStyle />
         <Header>
+          <Link to={`/`}>
           <Logo src={config.SITE_LOGO} />
-          <BasketContainer/>            
+          </Link>
+          <BasketContainer basketCounter='0'/>         
         </Header>
         <Content>
         <ProductBody>

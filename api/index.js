@@ -26,15 +26,14 @@ app.get('/api/v1/products/:item_id', async (req, res)=>{
 
   const itemId  = req.params.item_id;
 
-  let product;
-  for(let i in products.data){
-    if (itemId === products.data[i].item_id){
-      product = products.data[i];
-    }
-  }
-  res.send(product);
+  res.send(products.data.find(product => product.item_id === itemId));
+
 });
+
+
 
 app.listen(4000, () => {
   console.log('listening on port 4000');
 });
+
+

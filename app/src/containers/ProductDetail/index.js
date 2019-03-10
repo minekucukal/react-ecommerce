@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import config from '../../config'
 import ProductTitle from '../../components/ProductTitle';
 import ProductBox from '../../components/ProductBox';
@@ -16,7 +17,8 @@ import Header from '../../components/Header';
 import Logo from '../../components/Logo';
 import Content from '../../components/Grid/Content';
 import ProductBody from '../../components/ProductBody';
-import BasketContainer from '../../containers/Basket'
+import BasketContainer from '../../containers/Basket';
+
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -91,7 +93,9 @@ class ProductDetail extends React.Component {
       <div className="App">
         <GlobalStyle />
         <Header>
-          <Logo src={config.SITE_LOGO} />
+          <Link to={`/`}>
+            <Logo src={config.SITE_LOGO} />
+          </Link>
           <BasketContainer basketCounter={this.state.counter} />
         </Header>
         <Content>
