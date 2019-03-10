@@ -36,10 +36,18 @@ class ProductDetail extends React.Component {
     await this.getProduct()
   }
 
+  async getProduct() {
+    const response = await axios.get(`${config.API_URL}/api/v1/products/${this.props.match.params.item_id}`);
+    await this.setState({
+      product: response.data
+    })
+  }
+
   addNotification = event => {
     event.preventDefault();
     const notification = this.notificationSystem.current;
     notification.addNotification({
+      title: `${this.state.product.name}`,
       message: 'Sepete Eklendi',
       level: 'success',
       position: 'br'
@@ -49,16 +57,26 @@ class ProductDetail extends React.Component {
     })
   };
 
-  async getProduct() {
-    console.log(`${config.API_URL}/api/v1/products/${this.props.match.params.item_id}`);
-    const response = await axios.get(`${config.API_URL}/api/v1/products/${this.props.match.params.item_id}`);
-    await this.setState({
-      product: response.data
-    })
-  }
-
   renderProduct() {
-    const { price, image_url, name } = this.state.product;;
+    const style = {
+      NotificationItem: { // Override the notification item
+        DefaultStyle: { // Applied to every notification, regardless of the notification level
+          margin: '20px 5px 2px 1px'
+        },
+ 
+        success: { // Applied only to the success notification item
+          color: 'green',
+          fontSize:'16px'
+        }
+      },
+      Title: {
+        DefaultStyle: {
+          fontSize: '20px',
+        }
+      }
+    }; 
+
+    const { price, image_url, name } = this.state.product;
     if (this.state.product) {
       return (
         <div>
@@ -71,13 +89,17 @@ class ProductDetail extends React.Component {
                 <ProductImage src={image_url} />
                 <ProductInfoWrapper>
                   <ProductInfo>
+                  <Col m12 t6 d6>
                     <ProductPrice>
                       {price ? price.TRY : ""}₺
                    </ProductPrice>
+                   </Col>
+                   <Col m12 t6 d6>
                     <Button onClick={this.addNotification.bind(this)}>
                       Sepete Ekle
                     </Button>
-                    <NotificationSystem ref={this.notificationSystem} />
+                    </Col>
+                    <NotificationSystem ref={this.notificationSystem} style={style}/>
                   </ProductInfo>
                 </ProductInfoWrapper>
               </ProductBox>

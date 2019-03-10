@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 const Col = styled.div`
 	 float:left;
-    margin-bottom: 20px;
 
-
-   @media (min-width: 0px) and (max-width: 1199px) { 
+   @media (min-width: 0px) and (max-width: 767.99px) { 
       width: ${props => getMobileRules(props)};
+   }
+
+   @media (min-width: 768px) and (max-width: 1999.99px) { 
+      width: ${props => getTabletRules(props)};
    }
 
    @media (min-width: 1200px) {
@@ -47,7 +49,7 @@ const getDesktopRules = props => {
    return styleWidth;
 };
 
-const getTableRules = props => {
+const getTabletRules = props => {
    let styleWidth;
    if (props.t1) {
       styleWidth = "8.33%";

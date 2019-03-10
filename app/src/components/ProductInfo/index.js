@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 const ProductInfo = styled.div`
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: left;
+    text-align: left;
 `;
 
 export default ProductInfo;

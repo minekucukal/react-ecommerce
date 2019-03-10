@@ -8,6 +8,10 @@ const ProductTitle = styled.div`
     white-space: normal;
     overflow: hidden;    
     color:#505061;
+    @media (max-width: 576px) {
+        font-size: 15px;
+        line-height: 20px;
+   }
 `;
 
 export default ProductTitle;
